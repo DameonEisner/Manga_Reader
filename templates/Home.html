@@ -41,7 +41,7 @@
             <div class="card">
                 {% if manga.id %}
                         {% if manga.filename %}
-                        <a href="https://mangadex.org/title/{{manga.id}}/{{manga.title}}">
+                        <a target="_blank" href="https://mangadex.org/title/{{manga.id}}/{{manga.title}}">
                         <img class="card" src="https://uploads.mangadex.org/covers/{{manga.id}}/{{manga.filename}}.256.jpg" alt="{{manga.title}} cover art">
                         </a>
                         {% endif %}

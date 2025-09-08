@@ -15,7 +15,7 @@ Api_add_manga = API_manga_functionality.Api_add_manga
 OS paths
 """
 current_directory = os.path.dirname(os.path.abspath(__file__))
-relative_path = os.path.join(current_directory, "sqlite_data", "User_data_manga_website.db")
+relative_path = os.path.join(current_directory, "Sqlite_data", "MangaDatabase.db")
 
 """
 Global Variable
@@ -66,7 +66,7 @@ def create_app():
 @app.route("/", methods=["GET", "POST"])
 def home():
     user_manga = reversed(Manga.query.all())
-    return render_template("home.html", manga_list=user_manga)
+    return render_template("Home.html", manga_list=user_manga)
 
 
 @app.route("/add_manga", methods=["POST"])
@@ -76,7 +76,7 @@ def add_manga():
         index = request.form.get('selected_index')
         existing_manga = Manga.query.filter_by(title=manga_title).first()
         if existing_manga:
-            flash("Movie already exists in the database.", "warning")
+            flash("Manga already exists in the database.", "warning")
             return
         else:
             try:
@@ -106,5 +106,6 @@ def del_manga(manga_id):
     return redirect(url_for("home"))
 
 
-if __name__ in "__main__":
-    app.run(host="localhost", port=5000, debug=True)
+if __name__ == "__main__":
+    create_app()
+    app.run(host="localhost", port=8000, debug=True)
